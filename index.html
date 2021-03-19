@@ -85,7 +85,7 @@
    overlay.classList.toggle('is-active');
         let request = new XMLHttpRequest();
         var UrlForLoad  ='https://raihanmiraj.xyz/visa/api.php?c=f4&m='+option+'&y='+year;
-      request.open("GET", "https://raihanmiraj.xyz/visa/api.php?c=f4&m=september&y=2020");
+      request.open("GET", UrlForLoad);
       request.send();
       request.onload = () => {
         console.log(request);
