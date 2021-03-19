@@ -8,7 +8,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'><link rel="stylesheet" href="./style.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
     <title>Hello, world!</title>
   </head>
   <body>
@@ -42,7 +42,8 @@
     <div class="loading-overlay">
         <span class="fas fa-spinner fa-3x fa-spin"></span>
       </div>
- <h1 id="demo">Demo</h1>
+      <div class="d-flex justify-content-center"><h1>Visa Bulletin</h1></div>
+      <br> <br> <br> <br>
     <div class="d-flex justify-content-center">
    <form>
     <div class="mb-3">
@@ -83,7 +84,7 @@
         var demo = document.getElementById("demo");
    overlay.classList.toggle('is-active');
         let request = new XMLHttpRequest();
-        var UrlForLoad  ='http://raihanmiraj.xyz/visa/?c=f4&m='+option+'&y='+year;
+        var UrlForLoad  ='http://raihanmiraj.xyz/visa/api.php?c=f4&m='+option+'&y='+year;
       request.open("GET", UrlForLoad );
       request.send();
       request.onload = () => {
