@@ -95,10 +95,16 @@
 
           overlay.classList.toggle('is-active');
          var f4Result  = request.response;
+         var f4ResultFinal = JSON.parse(f4Result);
+         var modalResult = document.querySelector(".modalResult");
+         if(f4ResultFinal.date==null){
           var modalResult = document.querySelector(".modalResult");
-          var f4ResultFinal = JSON.parse(f4Result);
+          modalResult.innerHTML= `<h3>Data doesn't Publish OR Nothing Found</h3>`;
+   }else{
           modalResult.innerHTML= `<h3>Date: ${f4ResultFinal.date}, Month: ${f4ResultFinal.month}, Year: ${f4ResultFinal.year}   </h3>`;
- }else{
+ 
+         }
+         }else{
           console.log(`error ${request.status} ${request.statusText}`);
         }
       };
