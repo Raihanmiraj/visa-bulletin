@@ -84,8 +84,8 @@
         var demo = document.getElementById("demo");
    overlay.classList.toggle('is-active');
         let request = new XMLHttpRequest();
-        var UrlForLoad  ="http://raihanmiraj.xyz/visa/api.php?c=f4&m="+option+"&y="+year;
-      request.open("GET", UrlForLoad );
+        var UrlForLoad  ='http://raihanmiraj.xyz/visa/api.php?c=f4&m='+option+'&y='+year;
+      request.open("GET", "http://raihanmiraj.xyz/visa/api.php?c=f4&m=september&y=2020");
       request.send();
       request.onload = () => {
         console.log(request);
