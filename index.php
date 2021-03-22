@@ -13,8 +13,6 @@ if (isset($_GET['m'])&&isset($_GET['y'])) {
  $year = $_GET['y'];
  $month = $_GET['m'];
  $fiscalYear = $curl->get($base_url.'check.php?m='.$month.'&y='.$year);
- 
- 
   $url = 'https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin/'.$fiscalYear.'/visa-bulletin-for-'.$_GET['m'].'-'.$_GET['y'].'.html';
      $getFile = $curl->get($base_url.'scrap.php?id='.$url);
         $re = '/&lt;\/tr&gt;&lt;tr&gt;&lt;td&gt;F4&lt;\/td&gt;(.*?)&lt;\/tr&gt;&lt;\/tbody&gt;&lt;\/table&gt;/ms';
