@@ -1,25 +1,12 @@
-var unirest = require("unirest");
-
-var req = unirest("GET", "https://timezonedb.p.rapidapi.com/");
-
-req.query({
-	"key": "undefined",
-	"zone": "America/Los_Angeles",
-	"time": "1358474681",
-	"lat": "34.048108",
-	"lng": "-118.244705",
-	"format": "xml"
-});
-
-req.headers({
-	"x-rapidapi-key": "SIGN-UP-FOR-KEY",
-	"x-rapidapi-host": "timezonedb.p.rapidapi.com",
-	"useQueryString": true
-});
-
-
-req.end(function (res) {
-	if (res.error) throw new Error(res.error);
-
-	console.log(res.body);
-});
+JAN:1,
+FEB:2,
+MAR:3,
+APR:4,
+MAY:5,
+JUN:6,
+JUL:7,
+AUG:8,
+SEP:9,
+OCT:10,
+NOV:11,
+DEC:12

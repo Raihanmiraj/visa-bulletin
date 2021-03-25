@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'><link rel="stylesheet" href="./style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+    <title>Visa bulletin </title>
+  </head>
+  <body>
+
+
+<!-- Button trigger modal -->
+<button id="modalButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" hidden>
+</button>
+ 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Visa Bulletin</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modalResult">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       </div>
+    </div>
+  </div>
+</div>
+
+ 
+<div class="container">
+    <div class="loading-overlay">
+        <span class="fas fa-spinner fa-3x fa-spin"></span>
+      </div>
+      <div class="d-flex justify-content-center"><h1>Visa Bulletin</h1></div>
+      <br> <br> <br> <br>
+    <div class="d-flex justify-content-center">
+   <form>
+    <div class="mb-3">
+              <label for="year" class="form-label">Years</label>
+              <input type="text" class="form-control" id="year" aria-describedby="emailHelp">
+              
+            </div>
+            <div class="mb-3">
+                <select id="option" class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="january">January</option>
+                    <option value="february">February</option>
+                    <option value="march">March</option>
+                    <option value="april">April</option>
+                    <option value="may">May</option>
+                    <option value="june">June</option>
+                    <option value="july">July</option>
+                    <option value="august">August</option>
+                    <option value="september">September</option>
+                    <option value="october">October</option>
+                    <option value="november">November</option>
+                    <option value="december">December</option>
+                    
+                  </select>
+            </div>
+            <div class="mb-3">
+                <label for="PriorityDate" class="form-label">Priority Date</label>
+                <input type="date" class="form-control" id="PriorityDate" aria-describedby="emailHelp">
+               </div>
+            <button id="button" type="button" class="btn btn-primary">Submit</button>
+          </form>
+  </div>
+ </div>
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<script>
+   var button = document.getElementById("button");
+    button.addEventListener("click",function(){
+        let overlay = document.getElementsByClassName('loading-overlay')[0];
+        var year = document.getElementById("year").value;
+        var option = document.getElementById("option").value;
+        var demo = document.getElementById("demo");
+   overlay.classList.toggle('is-active');
+        let request = new XMLHttpRequest();
+        var UrlForLoad  ='https://raihanmiraj.xyz/visa/api.php?c=f4&m='+option+'&y='+year;
+      request.open("GET", UrlForLoad);
+      request.send();
+      request.onload = () => {
+        console.log(request);
+        if (request.status === 200) {
+          var modalButton = document.getElementById("modalButton");
+    modalButton.click();
+var PriorityDate=document.getElementById("PriorityDate").value;
+
+const regex = /(.*[0-9]?)-(.*[0-9]?)-(.*[0-9]?)/gm;
+const str =PriorityDate ;
+let m;
+
+while ((m = regex.exec(str)) !== null) {
+ 
+    if (m.index === regex.lastIndex) {
+        regex.lastIndex++;
+    }
+    // The result can be accessed through the `m`-variable.
+    // m.forEach((match, groupIndex) => {
+    //     console.log(`Found match, group ${groupIndex}: ${match}`);
+    // });
+    var yearMatch = m[1];
+    var monthMatch = m[2];
+    var dateMatch = m[3];
+    console.log(m);
+}
+ 
+const monthArray={
+  JAN:'1',
+FEB:'2',
+MAR:'3',
+APR:'4',
+MAY:'5',
+JUN:'6',
+JUL:'7',
+AUG:'8',
+SEP:'9',
+OCT:'10',
+NOV:'11',
+DEC:'12'
+     }
+    overlay.classList.toggle('is-active');
+         var f4Result  = request.response;
+         var f4ResultFinal = JSON.parse(f4Result);
+         var modalResult = document.querySelector(".modalResult");
+         console.log(monthArray);
+        var f4ResultMonth = f4ResultFinal.month;
+        console.log(f4ResultMonth);
+         console.log(monthArray[f4ResultMonth]);
+
+         if(f4ResultFinal.date==null){
+          var modalResult = document.querySelector(".modalResult");
+          modalResult.innerHTML= `<h3>Data doesn't Publish OR Nothing Found</h3>`;
+   }else{
+          modalResult.innerHTML= `<h3>Date: ${f4ResultFinal.date}, Month: ${f4ResultFinal.month}, Year: ${f4ResultFinal.year}   </h3><br>
+          ${yearMatch-parseInt('20'+f4ResultFinal.year)} Month ${Math.abs(monthArray[f4ResultMonth]-monthMatch)} Date ${Math.abs(f4ResultFinal.date-dateMatch)}`;
+       
+ 
+         }
+         }else{
+          console.log(`error ${request.status} ${request.statusText}`);
+        }
+      };
+
+
+      
+
+
+
+    });
+   
+ 
+
+ 
+
+
+</script>
+  </body>
+</html>
